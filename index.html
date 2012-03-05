@@ -37,7 +37,7 @@
                 
 				<section>
 					<h2>The Birth of Git</h2>
-					<p class="fragment">2005, Linux Kernel Team vs BitKeeper</p>
+					<p>2005, Linux Kernel Team vs BitKeeper</p>
 					<ol>
 						<li class="fragment"><strong>Distributed, scaled to handle thousands of developer</strong></li>
                         <li class="fragment"><strong>Simple, clean and fast</strong></li>
@@ -70,8 +70,9 @@
                         <h5>配置</h5>
 						<p>
                             <pre><code contenteditable>
-                            git config —local user.email “ryanchen@sohu-inc.com” 
-                            git config —local user.name “Hao Chen”
+                            git config --global core.autocrlf false #必须保持一致！！
+                            git config --local user.email “ryanchen@sohu-inc.com” 
+                            git config --local user.name “Hao Chen”
                             </code></pre>
                         </p>
 					</section>
@@ -89,10 +90,10 @@
                         <h5>修改/提交</h5>
 						<p>
                             <pre><code>
-                            touch test.rb
-                            git add test.rb
+                            touch hello.py
+                            git add hello.py
                             git status
-                            git commit -m "add test.rb"
+                            git commit -m "add hello.py"
                             git log
                             git push origin master
                             </code></pre>
@@ -103,19 +104,61 @@
 
 					
 				<section>
-					<h2>Why Git???</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>没有乱七八糟的.svn文件夹，仓库更小巧</h5>
+                    </section>
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>暂存区/Staging area(Index)</h5>
+                       <img src="assets/staging.png" />
+                       <pre>
+                         <code>
+                            git add hello.py
+                            #do some changes to hello.py
+                            git status
+                            #commit now will only commit file in index
+                            git checkout hello.py
+                            #do some changes to hello.py again
+                            git checkout --cache hello.py #从index上恢复文件                            
+                         </code>
+                       </pre>
+                    </section>
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>暂存修改(stash)</h5>
+                    </section>                    
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>本地仓库/本地分支</h5>
+                    </section>
+                    <section>
+                       <h2>Why Git?</h2>
+                       <h5>分支 分支 分支</h5>                       
+                    </section>
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>alter commit history</h5> 
+                       <pre>
+                         <code> 
+                         git commit --amend
+                         rebase/squash
+                         </code>   
+                       </pre>                          
+                    </section>
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>开发流程(workflow)</h5>
+                    </section>                    
 				</section>
 				
  				
 				<section>
-					<h1>THE END</h1>
-					<h3 class="inverted">A Bit of Internals of Git</h3>
+					<h1>TO BE CONTINUED</h1>
+                    <ul>
+					    <li class="inverted">A Bit of Internals of Git</li>
+                        <li class="inverted">github/gitolite/gitlabhq</li>
+                    </ul>
 				</section>
 			</div>
 
@@ -161,7 +204,7 @@
 				theme: query.theme || 'default', // default/neon
 
 				// Transition style
-				transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
+				transition: query.transition || 'page' // default/cube/page/concave/linear(2d)
 			});
 
 			hljs.initHighlightingOnLoad();
