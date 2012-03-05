@@ -1,0 +1,171 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Simple Guide of Git</title>
+
+		<meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+		<meta name="author" content="Hakim El Hattab">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div id="reveal">
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Simple Guide of Git</h1>
+					<p>
+						<i><small>- <a href="http://bytecho.com">Hao Chen</a> / <a href="http://twitter.com/kaktos">@kaktos</a></small></i>
+					</p>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
+						document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+                
+				<section>
+					<h2>The Birth of Git</h2>
+					<p class="fragment">2005, Linux Kernel Team vs BitKeeper</p>
+					<ol>
+						<li class="fragment"><strong>Distributed, scaled to handle thousands of developer</strong></li>
+                        <li class="fragment"><strong>Simple, clean and fast</strong></li>
+                        <li class="fragment"><strong>Integrity and atomic</strong></li>
+                        <li class="fragment"><strong>Support and encourage branched development</strong></li>
+                        <li class="fragment"><strong>Each repository have a full history</strong></li>
+					</ol>
+				</section>                
+                
+				
+				
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>Getting quick start</h2>
+                        <h5>安装</h5>
+						<dl>
+							<dt>Windows</dt> 
+                            <dd><a>http://code.google.com/p/msysgit/</a></dd>
+                            <dd><a>http://www.eclipse.org/egit/</a></dd>
+                            <dd><a>http://code.google.com/p/tortoisegit/</a></dd>
+                            <dt>Mac</dt> 
+                            <dd><a>http://mac.github.com/</a></dd>
+                            <dd><a>http://www.atlassian.com/software/sourcetree/overview</a></dd>
+						</dl>
+                        <p><a href="#/2/1">↓</a></p>
+					</section>
+					<section>
+						<h2>Getting quick start</h2>
+                        <h5>配置</h5>
+						<p>
+                            <pre><code contenteditable>
+                            git config —local user.email “ryanchen@sohu-inc.com” 
+                            git config —local user.name “Hao Chen”
+                            </code></pre>
+                        </p>
+					</section>
+					<section>
+						<h2>Getting quick start</h2>
+                        <h5>克隆</h5>
+						<p>
+                            <pre><code>
+                            git clone git@git.i.sohu-inc.com:isohu.git #ssh Protocol
+                            </code></pre>
+                        </p>
+					</section> 
+					<section>
+						<h2>Getting quick start</h2>
+                        <h5>修改/提交</h5>
+						<p>
+                            <pre><code>
+                            touch test.rb
+                            git add test.rb
+                            git status
+                            git commit -m "add test.rb"
+                            git log
+                            git push origin master
+                            </code></pre>
+                        </p>
+					</section>                     
+				</section>
+
+
+					
+				<section>
+					<h2>Why Git???</h2>
+					<ul>
+						<li>No order here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+						<li>Or here</li>
+					</ul>
+				</section>
+				
+ 				
+				<section>
+					<h1>THE END</h1>
+					<h3 class="inverted">A Bit of Internals of Git</h3>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+		
+		<script src="js/reveal.js"></script>
+		<script src="lib/highlight.js"></script>
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: false,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
