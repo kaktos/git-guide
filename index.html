@@ -28,6 +28,7 @@
 					<p>
 						<i><small>- <a href="http://bytecho.com">Hao Chen</a> / <a href="http://twitter.com/kaktos">@kaktos</a></small></i>
 					</p>
+                    <h4>i.sohu.com</h4>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) )
@@ -37,7 +38,7 @@
                 
 				<section>
 					<h2>The Birth of Git</h2>
-					<p>2005, Linux Kernel Team vs BitKeeper</p>
+					<p>导火索：2005, Linux Kernel Team被BitKeeper抛弃，于是决定自己弄个SCM</p>
 					<ol>
 						<li class="fragment"><strong>Distributed, scaled to handle thousands of developer</strong></li>
                         <li class="fragment"><strong>Simple, clean and fast</strong></li>
@@ -56,12 +57,12 @@
                         <h5>安装</h5>
 						<dl>
 							<dt>Windows</dt> 
-                            <dd><a>http://code.google.com/p/msysgit/</a></dd>
-                            <dd><a>http://www.eclipse.org/egit/</a></dd>
-                            <dd><a>http://code.google.com/p/tortoisegit/</a></dd>
+                            <dd><a href="http://code.google.com/p/msysgit/">http://code.google.com/p/msysgit/</a></dd>
+                            <dd><a href="http://www.eclipse.org/egit/">http://www.eclipse.org/egit/</a></dd>
+                            <dd><a href="http://code.google.com/p/tortoisegit/">http://code.google.com/p/tortoisegit/</a></dd>
                             <dt>Mac</dt> 
-                            <dd><a>http://mac.github.com/</a></dd>
-                            <dd><a>http://www.atlassian.com/software/sourcetree/overview</a></dd>
+                            <dd><a href="http://mac.github.com/">http://mac.github.com/</a></dd>
+                            <dd><a href="http://www.atlassian.com/software/sourcetree/overview">SourceTree by Atlassian</a></dd>
 						</dl>
                         <p><a href="#/2/1">↓</a></p>
 					</section>
@@ -69,12 +70,15 @@
 						<h2>Getting quick start</h2>
                         <h5>配置</h5>
 						<p>
-                            <pre><code contenteditable>
-                            git config --global core.autocrlf false #必须保持一致！！
-                            git config --local user.email “ryanchen@sohu-inc.com” 
-                            git config --local user.name “Hao Chen”
-                            </code></pre>
+                            <pre>
+                                <code>
+                                git config --global core.autocrlf false 
+                                git config --global user.email “ryanchen@sohu-inc.com” 
+                                git config --global user.name “Hao Chen”
+                                </code>
+                            </pre>
                         </p>
+                        <p><a href="#/2/2">↓</a></p>
 					</section>
 					<section>
 						<h2>Getting quick start</h2>
@@ -84,6 +88,7 @@
                             git clone git@git.i.sohu-inc.com:isohu.git #ssh Protocol
                             </code></pre>
                         </p>
+                        <p><a href="#/2/3">↓</a></p>
 					</section> 
 					<section>
 						<h2>Getting quick start</h2>
@@ -95,18 +100,47 @@
                             git status
                             git commit -m "add hello.py"
                             git log
+                            git show xxxxx
                             git push origin master
                             </code></pre>
                         </p>
 					</section>                     
 				</section>
 
-
+                <section>
+                    <section>
+                        <h2>A bit of Internals of Git</h2> 
+                        <h5>Objects, References, The Index</h5>
+                        <img src="assets/gitobj.png" />
+                    </section>                    
+                    <section>
+                        <h2>A bit of Internals of Git</h2>
+                        <h5>References</h5>
+                        <ul>
+                           <li>
+                             <h6>branch, remote branch, tag</h6>
+                             <p>都是指向object的指针(一般都指向commit object) 都存储在.git/refs/.</p>
+                           </li>
+                           <li>                   
+                             <h6>Symbolic References</h6>
+                             <p>一种特殊的ref,不直接指向object，而是指向其他的ref，比如HEAD，指向current branch。存储在.git/HEAD</p>
+                          </li>  
+                        </ul>
+                    </section>                    
+                    <section>
+                        <h2>A bit of Internals of Git</h2>
+                        <h5>The Index</h5> 
+                        <p>staging area,git add->git commit</p>  
+                        <img src="assets/git-index.png" />                        
+                    </section>                    
+                </section>
 					
 				<section>
                     <section>
                        <h2>Why Git?</h2> 
-                       <h5>没有乱七八糟的.svn文件夹，仓库更小巧</h5>
+                       <h5>仓库更小巧</h5>
+                       <p>没有乱七八糟的.svn文件夹</p>
+                       <p>用.gitignore忽略不想提交的文件</p>                       
                     </section>
                     <section>
                        <h2>Why Git?</h2> 
@@ -118,19 +152,39 @@
                             #do some changes to hello.py
                             git status
                             #commit now will only commit file in index
-                            git checkout hello.py
+
                             #do some changes to hello.py again
-                            git checkout --cache hello.py #从index上恢复文件                            
+                            git checkout -- hello.py #从index上恢复文件
                          </code>
                        </pre>
                     </section>
                     <section>
                        <h2>Why Git?</h2> 
-                       <h5>暂存修改(stash)</h5>
+                       <h5>暂存修改(stashing)</h5>
+                       <pre>
+                           <code>
+                            git stash save "work in progress for xxx feature"
+                            
+                            #do some boss assigned work,now go back to the stashed state
+                            git stash list
+                            git stash apply
+                            git stash clear
+                           </code>
+                       </pre>
                     </section>                    
                     <section>
                        <h2>Why Git?</h2> 
-                       <h5>本地仓库/本地分支</h5>
+                       <h5>本地仓库/本地分支</h5>                       
+                         <pre>
+                           <code>
+                           git log #查看文件修改历史
+                           </code>
+                         </pre>  
+                         <pre>
+                           <code>
+                           git branch dev abe0da #从某个历史新建分支
+                           </code>
+                         </pre>  
                     </section>
                     <section>
                        <h2>Why Git?</h2>
@@ -154,9 +208,12 @@
 				
  				
 				<section>
-					<h1>TO BE CONTINUED</h1>
+					<h1>Advanced Topics?</h1>
                     <ul>
-					    <li class="inverted">A Bit of Internals of Git</li>
+                        <li class="inverted">hook</li>
+                        <li class="inverted">rebasing/squash</li>
+                        <li class="inverted">reflog</li>
+                        <li class="inverted">blame</li>
                         <li class="inverted">github/gitolite/gitlabhq</li>
                     </ul>
 				</section>
@@ -192,7 +249,7 @@
 				progress: true,
 
 				// If true; each slide will be pushed to the browser history
-				history: false,
+				history: true,
 
 				// Flags if mouse wheel navigation should be enabled
 				mouseWheel: true,
@@ -204,7 +261,7 @@
 				theme: query.theme || 'default', // default/neon
 
 				// Transition style
-				transition: query.transition || 'page' // default/cube/page/concave/linear(2d)
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
 			});
 
 			hljs.initHighlightingOnLoad();
