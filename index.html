@@ -37,15 +37,27 @@
 				</section>
                 
 				<section>
-					<h2>The Birth of Git</h2>
-					<p>导火索：2005, Linux Kernel Team被BitKeeper抛弃，于是决定自己弄个SCM</p>
+                    <section>
+                        <h2>The Birth of Git</h2>
+                        <p>导火索：2005, Linux Kernel Team被BitKeeper抛弃，但是SCM的状况</p>
+                        <img src="assets/oldscm.png" />
+                    </section>
+                    <section>
+                    <h2>The Birth of Git</h2>
+                    <h4>Linus怒吼道老娘自己开发个算！</h4>
 					<ol>
 						<li class="fragment"><strong>Distributed, scaled to handle thousands of developer</strong></li>
                         <li class="fragment"><strong>Simple, clean and fast</strong></li>
                         <li class="fragment"><strong>Integrity and atomic</strong></li>
                         <li class="fragment"><strong>Support and encourage branched development</strong></li>
                         <li class="fragment"><strong>Each repository have a full history</strong></li>
-					</ol>
+					</ol>                    
+                    </section>
+                    <section>
+                      <h2>The Birth of Git</h2>
+                      <h5>历史上第一条git commit</h5>
+                      <img src="assets/first-commit.png" />
+                    </section>
 				</section>                
                 
 				
@@ -72,9 +84,9 @@
 						<p>
                             <pre>
                                 <code>
-                                git config --global core.autocrlf false 
-                                git config --global user.email “ryanchen@sohu-inc.com” 
-                                git config --global user.name “Hao Chen”
+                            git config --global core.autocrlf false 
+                            git config --global user.email “ryanchen@sohu-inc.com” 
+                            git config --global user.name “Hao Chen”
                                 </code>
                             </pre>
                         </p>
@@ -112,7 +124,22 @@
                         <h2>A bit of Internals of Git</h2> 
                         <h5>Objects, References, The Index</h5>
                         <img src="assets/gitobj.png" />
-                    </section>                    
+                    </section> 
+                    <section>
+                        <h2>A bit of Internals of Git</h2>
+                        <h5>Objects</h5> 
+                        <ol>
+                          <li>blob:基本类型，基本上就是个文件</li>
+                          <li>tree:可以看做文件夹，指向tree(subfolder)或者blob(file)</li>
+                          <li>commit:指向某个tree，包含metadata(author,timestamp), parent commit,comment</li>
+                          <li>tag:指向某个commit的指针</li>
+                        </ol> 
+                        <pre><code>
+                        git show 974d482
+                        git ls-tree 3598cd
+                        git show -s --pretty=raw 2be7fcb476
+                        </code></pre>                        
+                    </section>                      
                     <section>
                         <h2>A bit of Internals of Git</h2>
                         <h5>References</h5>
@@ -140,7 +167,7 @@
                        <h2>Why Git?</h2> 
                        <h5>仓库更小巧</h5>
                        <p>没有乱七八糟的.svn文件夹</p>
-                       <p>用.gitignore忽略不想提交的文件</p>                       
+                       <p>Ruby on Rails Subversion repo was 115M, the a Git repo was 13M</p>                       
                     </section>
                     <section>
                        <h2>Why Git?</h2> 
