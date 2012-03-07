@@ -44,7 +44,7 @@
                     </section>
                     <section>
                     <h2>The Birth of Git</h2>
-                    <h4>Linus怒吼道老娘自己开发个算！</h4>
+                    <h4>Linus!!</h4>
 					<ol>
 						<li class="fragment"><strong>Distributed, scaled to handle thousands of developer</strong></li>
                         <li class="fragment"><strong>Simple, clean and fast</strong></li>
@@ -53,6 +53,11 @@
                         <li class="fragment"><strong>Each repository have a full history</strong></li>
 					</ol>                    
                     </section>
+                    <section>
+                      <h2>The Birth of Git</h2>
+                      <h5>DVCS</h5>
+                      <img src="assets/dvcs.png" />
+                    </section>                    
                     <section>
                       <h2>The Birth of Git</h2>
                       <h5>历史上第一条git commit</h5>
@@ -95,11 +100,13 @@
 					<section>
 						<h2>Getting quick start</h2>
                         <h5>克隆</h5>
-						<p>
-                            <pre><code>
-                            git clone git@git.i.sohu-inc.com:isohu.git #ssh Protocol
-                            </code></pre>
-                        </p>
+                        <ul>
+                            <li>Local: git clone file:///e/playground/gitlabhq</li>
+                            <li>SSH: git clone ssh://git@github.com:kaktos/gitlabhq.git</li>
+                            <li>Git(fastest but readonly): git clone git://github.com/kaktos/gitlabhq.git</li>
+                            <li>Https: git clone https://kaktos@github.com/kaktos/gitlabhq.git</li>
+                        </ul>
+                     
                         <p><a href="#/2/3">↓</a></p>
 					</section> 
 					<section>
@@ -108,6 +115,7 @@
 						<p>
                             <pre><code>
                             touch hello.py
+                            touch .gitignore
                             git add hello.py
                             git status
                             git commit -m "add hello.py"
@@ -201,10 +209,12 @@
                     </section>                    
                     <section>
                        <h2>Why Git?</h2> 
-                       <h5>本地仓库/本地分支</h5>                       
+                       <h5>本地仓库/本地历史</h5>                       
                          <pre>
                            <code>
                            git log #查看文件修改历史
+                           git diff a2dafd d3q4dc #比较提交
+                           git blame hello.py #查看某个文件的历史
                            </code>
                          </pre>  
                          <pre>
@@ -214,34 +224,87 @@
                          </pre>  
                     </section>
                     <section>
-                       <h2>Why Git?</h2>
-                       <h5>分支 分支 分支</h5>                       
+                        <h2>Why Git?</h2>
+                        <h5>分支 - 初始状态</h5>
+                        <img src="assets/branch0.png" />
                     </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - 新建iss53分支</h5>
+                        <img src="assets/branch1.png" />
+                    </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - 在iss53上修改提交后</h5>
+                        <img src="assets/branch2.png" />
+                    </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - 新建hotfix并修改提交后(fast-forward)</h5>
+                        <img src="assets/branch3.png" />
+                    </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - 主干合并hotfix后</h5>
+                        <img src="assets/branch4.png" />
+                    </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - iss53上又提交</h5>
+                        <img src="assets/branch5.png" />
+                    </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - three way merge</h5>
+                        <img src="assets/branch6.png" />
+                    </section>
+                    <section>
+                        <h2>Why Git?</h2>
+                        <h5>分支 - 最终状态</h5>
+                        <img src="assets/branch7.png" />
+                        <pre><code>git branch -d iss53</code></pre>
+                    </section>                    
                     <section>
                        <h2>Why Git?</h2> 
                        <h5>alter commit history</h5> 
                        <pre>
                          <code> 
+                         git revert
+                         </code>   
+                       </pre>                        
+                       <pre>
+                         <code> 
                          git commit --amend
-                         rebase/squash
+                         git reset --hard 766fa2
+                         git rebase -i HEAD~10
+                         git filter-branch --tree-filter 'rm src/key.pub' HEAD
                          </code>   
                        </pre>                          
                     </section>
                     <section>
                        <h2>Why Git?</h2> 
-                       <h5>开发流程(workflow)</h5>
-                    </section>                    
+                       <h5>开发流程(workflow) - Simple</h5>
+                       <img src="assets/workflow1.png" />
+                    </section> 
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>开发流程(workflow) - Common</h5>
+                       <img src="assets/workflow2.png" />
+                    </section>  
+                    <section>
+                       <h2>Why Git?</h2> 
+                       <h5>开发流程(workflow) - 囧</h5>
+                       <img src="assets/workflow3.png" />
+                    </section>                     
 				</section>
 				
  				
 				<section>
 					<h1>Advanced Topics?</h1>
                     <ul>
-                        <li class="inverted">hook</li>
-                        <li class="inverted">rebasing/squash</li>
-                        <li class="inverted">reflog</li>
-                        <li class="inverted">blame</li>
-                        <li class="inverted">github/gitolite/gitlabhq</li>
+                        <li class="inverted">hook->gitolite->gitlabhq</li>
+                        <li class="inverted">git svn</li>
+                        <li class="inverted">git rebasing</li>
                     </ul>
 				</section>
 			</div>
